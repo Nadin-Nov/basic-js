@@ -13,25 +13,24 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function getSeason(date) {
   if (date === undefined) {
-    return 'Unable to determine the time of year!';
-}
+      return 'Unable to determine the time of year!';
+  }
 
-// Проверяем, является ли `date` действительной датой
-if (!(date instanceof Date) || isNaN(date.getTime())) {
-    throw new Error('Invalid date!');
-}
+  if (!(date instanceof Date) || isNaN(date.valueOf())) {
+      throw new Error('Invalid date!');
+  }
 
-const month = date.getMonth(); // 0 - 11 (январь - декабрь)
+  const month = date.getMonth();
 
-if (month === 11 || month === 0 || month === 1) {
-    return 'winter';
-} else if (month >= 2 && month <= 4) {
-    return 'spring';
-} else if (month >= 5 && month <= 7) {
-    return 'summer';
-} else {
-    return 'autumn';
-}
+  if (month === 11 || month === 0 || month === 1) {
+      return 'winter';
+  } else if (month >= 2 && month <= 4) {
+      return 'spring';
+  } else if (month >= 5 && month <= 7) {
+      return 'summer';
+  } else {
+      return 'autumn';
+  }
 }
 
 module.exports = {
